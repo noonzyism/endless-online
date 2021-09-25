@@ -1,3 +1,5 @@
+ui_notify(45, 45, "Connected as client.");
+
 clientId = -1;
 
 sent_xspeed = -1;

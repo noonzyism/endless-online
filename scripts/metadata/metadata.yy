@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "handlers",
-    "path": "folders/Scripts/game/network/handlers.yy",
+    "name": "game",
+    "path": "folders/Scripts/game.yy",
   },
   "resourceVersion": "1.0",
-  "name": "server_shoot_handler",
+  "name": "metadata",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "handlers",
-    "path": "folders/Scripts/game/network/handlers.yy",
+    "name": "graphics",
+    "path": "folders/Scripts/game/graphics.yy",
   },
   "resourceVersion": "1.0",
-  "name": "server_move_handler",
+  "name": "shaders",
   "tags": [],
   "resourceType": "GMScript",
 }
