@@ -1,5 +1,5 @@
-x += xspeed;
-y += yspeed;
+x = step_x(x, y, xspeed);
+y = step_y(x, y, yspeed);
 
 if (shooting) {
 	//right now, we just calc from the player origin to an arbitrarily far away point along the line

@@ -50,5 +50,5 @@ function server_join_handler() {
 	netplay_send(_session, _socket, Packets.MATCH, 0, obj_player.username, obj_player.team, obj_player.matchscore, obj_player.kills, obj_player.deaths, obj_player.objhold);
 
 	// tell newly connected client about its position state
-	broadcast_sync(_session, client_id);
+	broadcast_sync(_session, client_id, 0);
 }

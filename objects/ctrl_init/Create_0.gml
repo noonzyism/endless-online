@@ -1,3 +1,5 @@
+global.collision_map = layer_tilemap_get_id(layer_get_id("collision_map"));
+
 global.drawgrid = ds_priority_create();
 
 global.should_rebuild_buffer = true;
@@ -24,3 +26,5 @@ global.metadata = ds_map_create(); // this map is used to store optional data at
 
 
 instance_create_depth(x, y, depth, ctrl_draw);
+
+instance_create_depth(x, y, depth, ctrl_delayer);

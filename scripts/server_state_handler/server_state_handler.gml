@@ -9,16 +9,17 @@ function server_state_handler() {
 	    _values    = argument[5];
 
 	var _cid	  = _values[0];
-	var _xspeed	  = _values[1];
-	var _yspeed	  = _values[2];
-	var _weapon	  = _values[3];
-	var _shooting = _values[4];
-	var _aimx     = _values[5];
-	var _aimy     = _values[6];
+	var _ticks	  = _values[1];
+	var _xspeed	  = _values[2];
+	var _yspeed	  = _values[3];
+	var _weapon	  = _values[4];
+	var _shooting = _values[5];
+	var _aimx     = _values[6];
+	var _aimy     = _values[7];
 	
 	// temporary simulation of packet-loss
 	randomise();
-	if (irandom(10) != 0) {
+	if (irandom(10) != 1000) {
 		
 		var peer = ctrl_server.clients[_cid, 0];
 
@@ -35,7 +36,6 @@ function server_state_handler() {
 		peer.aimx = _aimx;
 		peer.aimy = _aimy;
 
-		//for now this sync packet will simply send the client his current official state as a reply
-		broadcast_sync(_session, _cid);
+		broadcast_sync(_session, _cid, _ticks);
 	}
 }

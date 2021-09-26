@@ -282,9 +282,9 @@
   "creationCodeFile": "",
   "inheritCode": false,
   "instanceCreationOrder": [
+    {"name":"inst_27CF2504","path":"rooms/room0/room0.yy",},
     {"name":"inst_21A8073A","path":"rooms/room0/room0.yy",},
     {"name":"inst_363700D2","path":"rooms/room0/room0.yy",},
-    {"name":"inst_27CF2504","path":"rooms/room0/room0.yy",},
     {"name":"inst_7FB913C8","path":"rooms/room0/room0.yy",},
     {"name":"inst_5002DE7C","path":"rooms/room0/room0.yy",},
     {"name":"inst_36FDB0CC","path":"rooms/room0/room0.yy",},

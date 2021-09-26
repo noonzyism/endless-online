@@ -9,6 +9,10 @@ sent_shooting = false;
 sent_weapon = -1;
 sent_angle = 999;
 
+ticks = 0;
+tick_lastsent = -1;
+tick_lastreceived = -1;
+
 //maps client IDs to instance IDs - peers[0] is used for the host
 for (var i = 0; i < 9; i ++) {
 	peers[i] = -1; //peer instance id
