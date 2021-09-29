@@ -8,9 +8,18 @@ if (shooting) {
 	weapon_fire(self, par_player, aimx, aimy);
 }
 
-//for now...
 if (hp < 1) {
-	x = 128;
-	y = 128;
-	hp = 100;	
+	alarm[10] = 30; // notify MATCH update (only applicable if server/host)
 }
+
+curr_hp = hp;
+
+if (curr_hp < prev_hp) {
+	draining = true;
+	alarm[11] = 30; // notify SYNC update (only applicable if server/host)
+}
+else {
+	draining = false;
+}
+
+prev_hp = hp;

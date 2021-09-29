@@ -28,3 +28,7 @@ global.metadata = ds_map_create(); // this map is used to store optional data at
 instance_create_depth(x, y, depth, ctrl_draw);
 
 instance_create_depth(x, y, depth, ctrl_delayer);
+
+global.notification_y = 100;
+
+global.debug = false;

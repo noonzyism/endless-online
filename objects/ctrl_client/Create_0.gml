@@ -28,6 +28,7 @@ init_packets();
 
 netplay_add_packet_handler(session, Packets.Echo, example_echo_client_handler);
 netplay_add_packet_handler(session, Packets.Increment, example_increment_client_handler);
+netplay_add_packet_handler(session, Packets.ACK, client_ack_handler);
 netplay_add_packet_handler(session, Packets.SYNC, client_sync_handler);
 netplay_add_packet_handler(session, Packets.ACCEPT, client_accept_handler);
 netplay_add_packet_handler(session, Packets.MATCH, client_match_handler);

@@ -1,7 +1,5 @@
-function broadcast_match(argument0, argument1) {
-	//sends a sync message about the given client to all clients
-	var _session	= argument0,
-		_cid		= argument1;
+function broadcast_match(_session, _cid) {
+	//sends a match message about the given client to all clients
 	
 	var i = 1;
 
@@ -11,6 +9,4 @@ function broadcast_match(argument0, argument1) {
 		netplay_send(_session, ctrl_server.clients[i, 2], Packets.MATCH, _cid, peer.username, peer.team, peer.matchscore, peer.kills, peer.deaths, peer.objhold);
 		i++;
 	}
-
-
 }

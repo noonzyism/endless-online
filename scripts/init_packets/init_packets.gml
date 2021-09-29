@@ -2,7 +2,8 @@ function init_packets() {
 	netplay_add_packet(session, Packets.Echo, buffer_string);
 	netplay_add_packet(session, Packets.Increment, buffer_u16);
 	netplay_add_packet(session, Packets.Position, buffer_u16, buffer_u16);
-	netplay_add_packet(session, Packets.SYNC, buffer_u16, buffer_u64, buffer_u8, buffer_u16, buffer_u16, buffer_s16, buffer_s16, buffer_u16, buffer_bool, buffer_u16, buffer_u16);
+	netplay_add_packet(session, Packets.ACK, buffer_u16, buffer_u64, buffer_u8, buffer_u16, buffer_u16, buffer_s16, buffer_s16, buffer_u16, buffer_bool, buffer_u16, buffer_u16);
+	netplay_add_packet(session, Packets.SYNC, buffer_u16, buffer_u8, buffer_u16, buffer_u16, buffer_s16, buffer_s16, buffer_u16, buffer_bool, buffer_u16, buffer_u16);
 	netplay_add_packet(session, Packets.JOIN, buffer_string);
 	netplay_add_packet(session, Packets.ACCEPT, buffer_u16, buffer_bool);
 	netplay_add_packet(session, Packets.STATE, buffer_u8, buffer_u64, buffer_s16, buffer_s16, buffer_u16, buffer_bool, buffer_u16, buffer_u16);

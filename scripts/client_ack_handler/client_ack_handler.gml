@@ -1,5 +1,5 @@
 /// example_increment_client_handler(session, socket, ip, port, packet_id, values);
-function client_sync_handler() {
+function client_ack_handler() {
 
 	var _session   = argument[0],
 	    _socket    = argument[1],
@@ -12,21 +12,24 @@ function client_sync_handler() {
 	// sendtime: only applicable to SYNCs relating to this client's self state, not other peers
 	// returns the tickstamp that the server received from the STATE message this client sent and for which the server is responding to
 	// if this is not applicable, (data for another peer or it was a server-initiated SYNC) _sendtime = 0
-	var _hp			= _values[1];
-	var _x			= _values[2];
-	var _y			= _values[3];
-	var _xspeed		= _values[4];
-	var _yspeed		= _values[5];
-	var _weapon		= _values[6];
-	var _shooting	= _values[7];
-	var _aimx		= _values[8];
-	var _aimy		= _values[9];
+	var _sendtick	= _values[1];
+	var _hp			= _values[2];
+	var _x			= _values[3];
+	var _y			= _values[4];
+	var _xspeed		= _values[5];
+	var _yspeed		= _values[6];
+	var _weapon		= _values[7];
+	var _shooting	= _values[8];
+	var _aimx		= _values[9];
+	var _aimy		= _values[10];
 
 	//setting the position from server unconditionally causes the player to stutter a bit since the received position is a couple ms outdated
 	//as a workaround, for now we'll just ignore the server's correction if we're only slightly off
 		
 	//self state
-	if (_id == ctrl_client.clientId) {
+	if (_id == ctrl_client.clientId 
+	&& _sendtick > ctrl_client.tick_lastreceived
+	&& (_sendtick == ctrl_client.tick_lastsent || _sendtick == 0)) {
 		//show_debug_message("Client received host sync: client position [" + string(_x) + ", " + string(_y) + "]");
 		
 		var delta = (ctrl_client.ticks - _sendtick)+1;

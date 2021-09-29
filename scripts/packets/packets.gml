@@ -4,6 +4,7 @@ function packets() {
 	    Increment,
 		Position,
 		STATE,
+		ACK,
 		SYNC,
 		JOIN,
 		ACCEPT,

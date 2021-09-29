@@ -9,6 +9,10 @@ for (var i = 0; i < 9; i ++) {
 	clients[i, 0] = -1; //peer instance id
 	clients[i, 1] = ""; //username
 	clients[i, 2] = -1; //socket
+	clients[i, 3] = 100; //last sent team info
+	clients[i, 4] = 100; //last sent matchscore
+	clients[i, 5] = 100; //last sent kills
+	clients[i, 6] = 100; //last sent deaths
 }
 
 //for now clients[0] is unused - the id of 0 is reserved for the server
@@ -39,3 +43,5 @@ netplay_add_packet_handler(session, Packets.STATE, server_state_handler);
 netplay_add_packet_handler(session, Packets.JOIN, server_join_handler);
 
 socket  = netplay_open(session, 5000, 32);
+
+//alarm[0] = 30;

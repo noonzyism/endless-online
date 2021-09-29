@@ -18,6 +18,7 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 			if (hit != noone) {
 				var obstruction = find_obstruction(shooter.x, shooter.y, hit.x, hit.y, 1);
 				if (obstruction == undefined) {
+					hit.foe = shooter;
 					hit.hp -= 1;
 				}
 			}
@@ -32,6 +33,7 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 			if (hit != noone) {
 				var obstruction = find_obstruction(shooter.x, shooter.y, hit.x, hit.y, 1);
 				if (obstruction == undefined) {
+					hit.foe = shooter;
 					hit.hp -= 50;
 				}
 			}

@@ -9,6 +9,9 @@ yspeed = 0;
 velocity = 10;
 
 shooting = false;
+draining = false;
+foe = -1;
+
 weapon = Weapons.ASSAULT_RIFLE;
 cooldown = false;
 
@@ -20,5 +23,6 @@ deaths = 0;
 objhold = false; //holding objective? boolean
 
 hp = 100;
-
+prev_hp = 100;
+curr_hp = 100;
 //instance_create_depth(x, y, depth, obj_peer);

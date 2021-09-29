@@ -38,14 +38,30 @@ else {
 	shooting = false;
 }
 
-//for now...
-if (hp < 1) {
-	x = 128;
-	y = 128;
-	hp = 100;	
-}
-
 if (keyboard_check_released(ord("Q"))) {
 	//toggle weapon
 	weapon_switch(self);
 }
+
+//for now...
+if (hp < 1) {
+	// respawn
+	x = 128;
+	y = 128;
+	hp = 100;
+	if (foe != -1) foe.kills += 1;
+	deaths += 1;
+}
+
+curr_hp = hp;
+
+if (curr_hp < prev_hp) {
+	draining = true;
+	alarm[11] = 30;
+	
+}
+else {
+	draining = false;
+}
+
+prev_hp = hp;
