@@ -31,36 +31,37 @@ function client_sync_handler() {
 	if (irandom(10) != 1000) {
 		
 		//self state
-		if (_id == ctrl_client.clientId 
-		&& _sendtick > ctrl_client.tick_lastreceived
-		&& (_sendtick == ctrl_client.tick_lastsent || _sendtick == 0)) {
-			//show_debug_message("Client received host sync: client position [" + string(_x) + ", " + string(_y) + "]");
+		if (_id == ctrl_client.clientId) {
+			show_debug_message("Client received host sync: client position [" + string(_x) + ", " + string(_y) + "]");
 		
-			var delta = (ctrl_client.ticks - _sendtick)+1;
+			// if this is the latest response to a state update, project movement
+			if (_sendtick == ctrl_client.tick_lastsent) {
+				var delta = (ctrl_client.ticks - _sendtick)+1;
 			
-			//obj_player.x = _x;
-			//obj_player.y = _y;
-			
-			var actual_x = obj_player.x;
-			var actual_y = obj_player.y;
-			var dest = step_xy(_x, _y, _xspeed, _yspeed, delta);
-			
-			// if speed matches what the server last knew about, correct and/or project position
-			if (_xspeed == obj_player.xspeed && _yspeed == obj_player.yspeed) {
-				obj_player.x = dest[0];
-				obj_player.y = dest[1];
-			}
-			
-			if (actual_x != dest[0] || actual_y != dest[1]) {
-				show_debug_message("Host sync: [" + string(_x) + ", " + string(_y) + "] Calc'd: [" + string(dest[0]) + ", " + string(dest[1]) + "] Actual: [" + string(actual_x) + ", " + string(actual_y) + "]");
-			}
-			
-			if abs(obj_player.x - _x) > (obj_player.velocity * 2) + 1 {
 				//obj_player.x = _x;
-			}
-
-			if abs(obj_player.y - _y) > (obj_player.velocity * 2) + 1 {
 				//obj_player.y = _y;
+			
+				var actual_x = obj_player.x;
+				var actual_y = obj_player.y;
+				var dest = step_xy(_x, _y, _xspeed, _yspeed, delta);
+			
+				// if speed matches what the server last knew about, correct and/or project position
+				if (_xspeed == obj_player.xspeed && _yspeed == obj_player.yspeed) {
+					obj_player.x = dest[0];
+					obj_player.y = dest[1];
+				}
+			
+				if (actual_x != dest[0] || actual_y != dest[1]) {
+					show_debug_message("*************Host sync: [" + string(_x) + ", " + string(_y) + "] Calc'd: [" + string(dest[0]) + ", " + string(dest[1]) + "] Actual: [" + string(actual_x) + ", " + string(actual_y) + "]");
+				}
+			
+				if abs(obj_player.x - _x) > (obj_player.velocity * 2) + 1 {
+					//obj_player.x = _x;
+				}
+
+				if abs(obj_player.y - _y) > (obj_player.velocity * 2) + 1 {
+					//obj_player.y = _y;
+				}
 			}
 	
 			//hp is fully dictated by server, any local calculation (no matter how "close" it is) gets overwritten by this
