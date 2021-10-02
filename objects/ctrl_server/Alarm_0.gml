@@ -1,0 +1,1 @@
+// while this timer is > 0, we broadcast SYNCs regarding the host

@@ -11,6 +11,7 @@ velocity = 10;
 shooting = false;
 weapon = Weapons.ASSAULT_RIFLE;
 cooldown = false;
+respawn = false;
 
 //match-related variables
 team = false; //team? boolean (true = blue, false = red)

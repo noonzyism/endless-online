@@ -5,7 +5,7 @@ clientName = "";
 clientSocket = -1;
 client_sent_hp = 100;
 
-for (var i = 0; i < 9; i ++) {
+for (var i = 0; i < 9; i++) {
 	clients[i, 0] = -1; //peer instance id
 	clients[i, 1] = ""; //username
 	clients[i, 2] = -1; //socket

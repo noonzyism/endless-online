@@ -38,13 +38,6 @@ else {
 	shooting = false;
 }
 
-//for now...
-if (hp < 1) {
-	x = 128;
-	y = 128;
-	hp = 100;	
-}
-
 if (keyboard_check_released(ord("Q"))) {
 	//toggle weapon
 	weapon_switch(self);

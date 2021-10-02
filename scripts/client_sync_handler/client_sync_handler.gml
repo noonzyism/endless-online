@@ -22,114 +22,101 @@ function client_sync_handler() {
 	var _shooting	= _values[8];
 	var _aimx		= _values[9];
 	var _aimy		= _values[10];
+	var _force		= _values[11];
 
 	//setting the position from server unconditionally causes the player to stutter a bit since the received position is a couple ms outdated
 	//as a workaround, for now we'll just ignore the server's correction if we're only slightly off
-
-	// temporary simulation of packet-loss
-	randomise();
-	if (irandom(10) != 1000) {
 		
-		//self state
-		if (_id == ctrl_client.clientId) {
-			show_debug_message("Client received host sync: client position [" + string(_x) + ", " + string(_y) + "]");
+	//self state
+	if (_id == ctrl_client.clientId) {
+		show_debug_message("Client received SYNC: client position [" + string(_x) + ", " + string(_y) + "]");
 		
-			// if this is the latest response to a state update, project movement
-			if (_sendtick == ctrl_client.tick_lastsent) {
-				var delta = (ctrl_client.ticks - _sendtick)+1;
+		// if this is the latest response to a state update, project movement (or if it's server-forced update)
+		if (_force || _sendtick == ctrl_client.tick_lastsent) {
+			var delta = (ctrl_client.ticks - _sendtick)+1;
 			
-				//obj_player.x = _x;
-				//obj_player.y = _y;
+			//obj_player.x = _x;
+			//obj_player.y = _y;
 			
-				var actual_x = obj_player.x;
-				var actual_y = obj_player.y;
-				var dest = step_xy(_x, _y, _xspeed, _yspeed, delta);
+			var actual_x = obj_player.x;
+			var actual_y = obj_player.y;
+			var dest = step_xy(_x, _y, _xspeed, _yspeed, delta);
 			
-				// if speed matches what the server last knew about, correct and/or project position
-				if (_xspeed == obj_player.xspeed && _yspeed == obj_player.yspeed) {
-					obj_player.x = dest[0];
-					obj_player.y = dest[1];
-				}
-			
-				if (actual_x != dest[0] || actual_y != dest[1]) {
-					show_debug_message("*************Host sync: [" + string(_x) + ", " + string(_y) + "] Calc'd: [" + string(dest[0]) + ", " + string(dest[1]) + "] Actual: [" + string(actual_x) + ", " + string(actual_y) + "]");
-				}
-			
-				if abs(obj_player.x - _x) > (obj_player.velocity * 2) + 1 {
-					//obj_player.x = _x;
-				}
-
-				if abs(obj_player.y - _y) > (obj_player.velocity * 2) + 1 {
-					//obj_player.y = _y;
-				}
+			// if speed matches what the server last knew about (or if it's a server-forced update), correct and/or project position
+			if (_force || (_xspeed == obj_player.xspeed && _yspeed == obj_player.yspeed)) {
+				obj_player.x = dest[0];
+				obj_player.y = dest[1];
 			}
-	
-			//hp is fully dictated by server, any local calculation (no matter how "close" it is) gets overwritten by this
-			obj_player.hp = _hp;
+			
+			if (actual_x != dest[0] || actual_y != dest[1]) {
+				show_debug_message("*************Host sync: [" + string(_x) + ", " + string(_y) + "] Calc'd: [" + string(dest[0]) + ", " + string(dest[1]) + "] Actual: [" + string(actual_x) + ", " + string(actual_y) + "]");
+			}
 		}
-		//server state
-		//some potential consolidation of code is possible here - these logic blocks for both host and peer IDs effectively do the same exact thing (update some peer instance)
-		else if (_id == 0) {
-			show_debug_message("Client received host sync: host position [" + string(_x) + ", " + string(_y) + "]");
 	
-			//create an instance of this peer if it hasn't already been done
-			if (ctrl_client.peers[0] == -1) {
-				ctrl_client.peers[0] = instance_create_depth(_x, _y, 100, obj_peer);
-			}
-		
-			ctrl_client.peers[0].x = _x;
-			ctrl_client.peers[0].y = _y;
+		//hp is fully dictated by server, any local calculation (no matter how "close" it is) gets overwritten by this
+		obj_player.hp = _hp;
+	}
+	//server state
+	//some potential consolidation of code is possible here - these logic blocks for both host and peer IDs effectively do the same exact thing (update some peer instance)
+	else if (_id == 0) {
+		show_debug_message("Client received SYNC: host position [" + string(_x) + ", " + string(_y) + "]");
 	
-			if abs(ctrl_client.peers[0].x - _x) > (obj_player.velocity * 2) + 1 {
-				//ctrl_client.peers[0].x = _x;
-			}
-
-			if abs(ctrl_client.peers[0].y - _y) > (obj_player.velocity * 2) + 1 {
-				//ctrl_client.peers[0].y = _y;
-			}
-	
-			ctrl_client.peers[0].xspeed = _xspeed;
-			ctrl_client.peers[0].yspeed = _yspeed;
-	
-			ctrl_client.peers[0].image_angle = point_direction(_x, _y, _aimx, _aimy);
-	
-			ctrl_client.peers[0].aimx = _aimx;
-			ctrl_client.peers[0].aimy = _aimy;
-	
-			if (ctrl_client.peers[0].weapon != _weapon) {
-				weapon_switch(ctrl_client.peers[0]);
-			}
-			ctrl_client.peers[0].shooting = _shooting;
-	
-			ctrl_client.peers[0].hp = _hp;
+		//create an instance of this peer if it hasn't already been done
+		if (ctrl_client.peers[0] == -1) {
+			ctrl_client.peers[0] = instance_create_depth(_x, _y, 100, obj_peer);
 		}
-		else if (_id != 0 && _id != ctrl_client.clientId) { //other peer
-			//create an instance of this peer if it hasn't already been done
-			if (ctrl_client.peers[_id] == -1) {
-				ctrl_client.peers[_id] = instance_create_depth(_x, _y, 100, obj_peer);
-			}
+		
+		ctrl_client.peers[0].x = _x;
+		ctrl_client.peers[0].y = _y;
 	
-			var peer = ctrl_client.peers[_id];
-	
-			peer.x = _x;
-			peer.y = _y;
-	
-			peer.xspeed = _xspeed;
-			peer.yspeed = _yspeed;
-			peer.image_angle = point_direction(_x, _y, _aimx, _aimy);
-	
-			peer.aimx = _aimx;
-			peer.aimy = _aimy;
-	
-	
-			if (peer.weapon != _weapon) {
-				weapon_switch(peer);
-			}
-			peer.shooting = _shooting;
-			peer.hp = _hp;
+		if abs(ctrl_client.peers[0].x - _x) > (obj_player.velocity * 2) + 1 {
+			//ctrl_client.peers[0].x = _x;
 		}
 
-	} // packet-loss sim block end
+		if abs(ctrl_client.peers[0].y - _y) > (obj_player.velocity * 2) + 1 {
+			//ctrl_client.peers[0].y = _y;
+		}
+	
+		ctrl_client.peers[0].xspeed = _xspeed;
+		ctrl_client.peers[0].yspeed = _yspeed;
+	
+		ctrl_client.peers[0].image_angle = point_direction(_x, _y, _aimx, _aimy);
+	
+		ctrl_client.peers[0].aimx = _aimx;
+		ctrl_client.peers[0].aimy = _aimy;
+	
+		if (ctrl_client.peers[0].weapon != _weapon) {
+			weapon_switch(ctrl_client.peers[0]);
+		}
+		ctrl_client.peers[0].shooting = _shooting;
+	
+		ctrl_client.peers[0].hp = _hp;
+	}
+	else if (_id != 0 && _id != ctrl_client.clientId) { //other peer
+		//create an instance of this peer if it hasn't already been done
+		if (ctrl_client.peers[_id] == -1) {
+			ctrl_client.peers[_id] = instance_create_depth(_x, _y, 100, obj_peer);
+		}
+	
+		var peer = ctrl_client.peers[_id];
+	
+		peer.x = _x;
+		peer.y = _y;
+	
+		peer.xspeed = _xspeed;
+		peer.yspeed = _yspeed;
+		peer.image_angle = point_direction(_x, _y, _aimx, _aimy);
+	
+		peer.aimx = _aimx;
+		peer.aimy = _aimy;
+	
+	
+		if (peer.weapon != _weapon) {
+			weapon_switch(peer);
+		}
+		peer.shooting = _shooting;
+		peer.hp = _hp;
+	}
 
 
 }

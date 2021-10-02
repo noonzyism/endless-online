@@ -6,7 +6,6 @@
     {"id":{"name":"server_state_handler","path":"scripts/server_state_handler/server_state_handler.yy",},"order":6,},
     {"id":{"name":"netplay_remove_packet","path":"scripts/netplay_remove_packet/netplay_remove_packet.yy",},"order":3,},
     {"id":{"name":"ts_blue","path":"tilesets/ts_blue/ts_blue.yy",},"order":0,},
-    {"id":{"name":"ctrl_delayer","path":"objects/ctrl_delayer/ctrl_delayer.yy",},"order":3,},
     {"id":{"name":"flood_match","path":"scripts/flood_match/flood_match.yy",},"order":4,},
     {"id":{"name":"broadcast_match_except","path":"scripts/broadcast_match_except/broadcast_match_except.yy",},"order":1,},
     {"id":{"name":"obj_block","path":"objects/obj_block/obj_block.yy",},"order":5,},

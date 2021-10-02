@@ -6,6 +6,7 @@ hp = 100;
 shooting = false;
 weapon = Weapons.ASSAULT_RIFLE;
 cooldown = false;
+respawn = false;
 
 aimx = 0;
 aimy = 0;
