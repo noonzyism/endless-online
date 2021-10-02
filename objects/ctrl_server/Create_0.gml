@@ -1,4 +1,4 @@
-ui_notify(45, 45, "Connected as host.");
+ui_notify(45, "Connected as host.");
 
 clientId = -1;
 clientName = "";
