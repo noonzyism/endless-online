@@ -13,12 +13,17 @@ weapon = Weapons.ASSAULT_RIFLE;
 cooldown = false;
 respawn = false;
 
+foe = -1;
+
 //match-related variables
 team = false; //team? boolean (true = blue, false = red)
 matchscore = 0;
 kills = 0;
 deaths = 0;
 objhold = false; //holding objective? boolean
+
+curr_kills = 0;
+prev_kills = 0;
 
 hp = 100;
 

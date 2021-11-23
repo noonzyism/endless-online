@@ -8,6 +8,8 @@ weapon = Weapons.ASSAULT_RIFLE;
 cooldown = false;
 respawn = false;
 
+foe = -1;
+
 aimx = 0;
 aimy = 0;
 

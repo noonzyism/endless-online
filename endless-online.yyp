@@ -49,6 +49,7 @@
     {"id":{"name":"netplay_get_packet","path":"scripts/netplay_get_packet/netplay_get_packet.yy",},"order":1,},
     {"id":{"name":"weapon_switch","path":"scripts/weapon_switch/weapon_switch.yy",},"order":3,},
     {"id":{"name":"example_connect_client_handler","path":"scripts/example_connect_client_handler/example_connect_client_handler.yy",},"order":0,},
+    {"id":{"name":"broadcast_server_match","path":"scripts/broadcast_server_match/broadcast_server_match.yy",},"order":8,},
     {"id":{"name":"example_disconnect_client_handler","path":"scripts/example_disconnect_client_handler/example_disconnect_client_handler.yy",},"order":4,},
     {"id":{"name":"netplay_get_packets","path":"scripts/netplay_get_packets/netplay_get_packets.yy",},"order":2,},
     {"id":{"name":"ctrl_draw","path":"objects/ctrl_draw/ctrl_draw.yy",},"order":0,},
