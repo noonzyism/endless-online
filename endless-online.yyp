@@ -47,6 +47,7 @@
     {"id":{"name":"sh_p3d","path":"shaders/sh_p3d/sh_p3d.yy",},"order":0,},
     {"id":{"name":"flood_match_except","path":"scripts/flood_match_except/flood_match_except.yy",},"order":5,},
     {"id":{"name":"netplay_get_packet","path":"scripts/netplay_get_packet/netplay_get_packet.yy",},"order":1,},
+    {"id":{"name":"obj_cam","path":"objects/obj_cam/obj_cam.yy",},"order":6,},
     {"id":{"name":"weapon_switch","path":"scripts/weapon_switch/weapon_switch.yy",},"order":3,},
     {"id":{"name":"example_connect_client_handler","path":"scripts/example_connect_client_handler/example_connect_client_handler.yy",},"order":0,},
     {"id":{"name":"broadcast_server_match","path":"scripts/broadcast_server_match/broadcast_server_match.yy",},"order":8,},

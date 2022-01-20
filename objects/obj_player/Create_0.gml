@@ -27,4 +27,7 @@ prev_kills = 0;
 
 hp = 100;
 
+target_x = 0;
+target_y = 0;
+
 //instance_create_depth(x, y, depth, obj_peer);
