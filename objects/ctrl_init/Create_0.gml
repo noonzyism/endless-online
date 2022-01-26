@@ -24,5 +24,24 @@ global.uniforms_dynamic_tex = -1;
 
 global.metadata = ds_map_create(); // this map is used to store optional data at a per-instance level, which is preferable to using instance variables
 
+global.logs = "";
+
+global.game_width = 1024;
+global.game_height = 768;
+
+global.particle_system = part_system_create_layer("instances", false);
+global.blood_particle = part_type_create();
+part_type_shape(global.blood_particle, pt_shape_flare);
+part_type_size(global.blood_particle, 1, 3, 0, 2);
+part_type_scale(global.blood_particle, 0.1, 0.1);
+part_type_color1(global.blood_particle, c_red);
+part_type_alpha1(global.blood_particle, 1);
+part_type_speed(global.blood_particle, 0.1, 0.1, 0.5, 0);
+part_type_direction(global.blood_particle, 0, 359, 0, 0);
+part_type_orientation(global.blood_particle, 0, 0, 0, 0, true);
+part_type_blend(global.blood_particle, false);
+part_type_life(global.blood_particle, 1, 15);
+
 
 instance_create_depth(x, y, depth, ctrl_draw);
+instance_create_depth(x, y, depth, ctrl_camera);

@@ -42,3 +42,11 @@ if (keyboard_check_released(ord("Q"))) {
 	//toggle weapon
 	weapon_switch(self);
 }
+
+curr_kills = kills;
+
+if (curr_kills > prev_kills) {
+	ui_notify("Kill confirmed.");
+}
+
+prev_kills = kills;

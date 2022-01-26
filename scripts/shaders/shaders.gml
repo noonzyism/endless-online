@@ -1,8 +1,8 @@
 function set_shader_uniforms() {
 	shader_set_uniform_f(
 		shader_get_uniform(sh_p3d, "viewData"),
-		obj_player.x, 
-		obj_player.y,
+		ctrl_camera.x, 
+		ctrl_camera.y,
 		0,
 		1000
 	);

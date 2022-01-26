@@ -1,4 +1,4 @@
-ui_notify(45, "Connected as client.");
+ui_notify("Connected as client.");
 
 clientId = -1;
 

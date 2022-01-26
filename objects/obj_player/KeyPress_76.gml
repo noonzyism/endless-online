@@ -1,1 +1,0 @@
-ui_notify(450, "Test notification!");
