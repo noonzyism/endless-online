@@ -29,7 +29,9 @@ function client_sync_handler() {
 		
 	//self state
 	if (_id == ctrl_client.clientId) {
-		show_debug_message("Client received SYNC: client position [" + string(_x) + ", " + string(_y) + "]");
+		var msg = "[t=" + string(_sendtick) + "] Client received SYNC: client position [" + string(_x) + ", " + string(_y) + "]"
+		show_debug_message(msg);
+		global.logs += "\n"+msg;
 		
 		// if this is the latest response to a state update (or if it's a server-forced update), project movement
 		if (_force || _sendtick == ctrl_client.tick_lastsent) {
@@ -49,7 +51,9 @@ function client_sync_handler() {
 			}
 			
 			if (actual_x != dest[0] || actual_y != dest[1]) {
-				show_debug_message("*************Host sync: [" + string(_x) + ", " + string(_y) + "] Calc'd: [" + string(dest[0]) + ", " + string(dest[1]) + "] Actual: [" + string(actual_x) + ", " + string(actual_y) + "]");
+				var msg = "[t=" + string(_sendtick) + "] *************Host sync: [" + string(_x) + ", " + string(_y) + ", " + string(_xspeed) + ", " + string(_yspeed) + "] ||||| [" + string(actual_x) + ", " + string(actual_y) + "] -> [" + string(dest[0]) + ", " + string(dest[1]) + "]";
+				show_debug_message(msg);
+				global.logs += "\n"+msg;
 			}
 		}
 	

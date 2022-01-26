@@ -22,6 +22,7 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 					hit.foe = shooter;
 					shooter.target_x = hit.x;
 					shooter.target_y = hit.y;
+					part_particles_create(global.particle_system, hit.x + random_range(-10, 10), hit.y + random_range(-10, 10), global.blood_particle, 1);
 				}
 				else {
 					shooter.target_x = obstruction[0];
@@ -55,6 +56,7 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 					hit.foe = shooter;
 					shooter.target_x = hit.x;
 					shooter.target_y = hit.y;
+					part_particles_create(global.particle_system, hit.x + random_range(-10, 10), hit.y + random_range(-10, 10), global.blood_particle, 10);
 				}
 				else {
 					shooter.target_x = obstruction[0];

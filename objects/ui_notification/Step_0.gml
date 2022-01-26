@@ -1,3 +1,5 @@
+x = global.game_width/2; // horizontally centered
+
 curr_count = instance_number(ui_notification);
 
 if (curr_count < prev_count) {

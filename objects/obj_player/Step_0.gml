@@ -46,7 +46,7 @@ if (keyboard_check_released(ord("Q"))) {
 curr_kills = kills;
 
 if (curr_kills > prev_kills) {
-	ui_notify(450, "Kill confirmed.");
+	ui_notify("Kill confirmed.");
 }
 
 prev_kills = kills;

@@ -21,3 +21,6 @@ matchscore = 0;  //score
 kills = 0;  //kills
 deaths = 0;  //deaths
 objhold = false;  //holding objective? boolean
+
+target_x = 0;
+target_y = 0;

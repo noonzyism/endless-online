@@ -18,7 +18,8 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"obj_cam","path":"objects/obj_cam/obj_cam.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,"parent":{"name":"ctrl_camera","path":"objects/ctrl_camera/ctrl_camera.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"ctrl_camera","path":"objects/ctrl_camera/ctrl_camera.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
@@ -27,7 +28,7 @@
     "path": "folders/Objects/gameplay.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_cam",
+  "name": "ctrl_camera",
   "tags": [],
   "resourceType": "GMObject",
 }

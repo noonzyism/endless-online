@@ -7,4 +7,11 @@ if (vb_p3d != -1) {
 
 
 
+// HP
 draw_text(obj_player.x-32, obj_player.y-36, obj_player.username + ": " + string(obj_player.hp));
+
+
+// Crosshair
+crosshair_sprite = obj_player.weapon == 0 ? spr_crosshair_ar : spr_crosshair_sniper;
+draw_sprite_ext(crosshair_sprite, obj_player.shooting ? -1 : 0, mouse_x, mouse_y, 1.0, 1.0, 0, obj_player.shooting ? c_yellow : c_white, 1.0);
+draw_sprite_ext(crosshair_sprite, obj_player.shooting ? -1 : 0, mouse_x, mouse_y, 1.0, 1.0, 0, obj_player.shooting ? c_yellow : c_white, 1.0);
