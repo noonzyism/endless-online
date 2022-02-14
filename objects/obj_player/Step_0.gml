@@ -32,7 +32,7 @@ image_angle = mouse_dir;
 
 if mouse_check_button(mb_left) {
 	shooting = cooldown ? false : true;
-	weapon_fire(self, par_player, mouse_x, mouse_y);
+	weapon_fire(self, par_mob, mouse_x, mouse_y);
 }
 else {
 	shooting = false;

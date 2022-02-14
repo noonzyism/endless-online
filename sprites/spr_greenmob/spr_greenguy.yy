@@ -139,7 +139,7 @@
     "eventStubScript": null,
     "parent": {"name":"spr_greenguy","path":"sprites/spr_greenguy/spr_greenguy.yy",},
     "resourceVersion": "1.3",
-    "name": "spr_greenguy",
+    "name": "",
     "tags": [],
     "resourceType": "GMSequence",
   },

@@ -1,17 +1,27 @@
 draw_set_color(c_white);
 
 draw_text(32, 64, "Weapon: " + string(obj_player.weapon == 0 ? "Assault Rifle" : "Sniper"));
-
 draw_text(32, 96, "Cooldown: " + string(obj_player.alarm[0] == -1 ? "None" : obj_player.alarm[0]));
 
-draw_text(32, 128, "Move with [W,A,S,D] / Switch weapon with [Q]");
 
+// Match Info
+if (instance_exists(ctrl_match_survival)) {
+	draw_text(global.game_width - 250, 32, "Mainframe Health: " + string(ctrl_match_survival.mainframe_health));
 
-var red_score = (obj_player.team) ? obj_player.deaths : obj_player.kills;
-var blue_score = (obj_player.team) ? obj_player.kills : obj_player.deaths;
+	for (var i = 0; i < instance_number(obj_task); i++) {
+		var task = instance_find(obj_task, i);
+		draw_text(32, 128 + (i*32), task.description + " (" + string(ceil(task.alarm[0]/60)) + ")");
+	}
+}
 
-draw_text(32, 160, "Red Team: " + string(red_score));
-draw_text(32, 192, "Blue Team: " + string(blue_score));
+// Key Info
+if (instance_exists(ctrl_match_survival)) {
+	draw_text(32, global.game_height - 400, "Alpha Key: "+string(ctrl_match_survival.alpha_key));
+	draw_text(32, global.game_height - 350, "Delta Key: "+string(ctrl_match_survival.delta_key));
+	draw_text(32, global.game_height - 300, "Sigma Key: "+string(ctrl_match_survival.sigma_key));
+	draw_text(32, global.game_height - 250, "Omega Key: "+string(ctrl_match_survival.omega_key));
+}
+
 
 // Weapon UI
 weapon_ui_x = global.game_width - 160;

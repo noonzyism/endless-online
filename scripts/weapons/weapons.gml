@@ -1,7 +1,8 @@
 function weapons() {
 	enum Weapons {
 		ASSAULT_RIFLE,
-		SNIPER
+		SNIPER,
+		PISTOL
 	}
 
 

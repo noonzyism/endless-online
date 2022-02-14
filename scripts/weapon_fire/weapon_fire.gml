@@ -14,15 +14,15 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 
 	if (shooter.weapon == Weapons.ASSAULT_RIFLE) {
 		if (shooter.cooldown == false) {
-			var hit = collision_line_first(shooter.x, shooter.y, aimx + (2 * xslope), aimy + (2 * yslope), target, false, true);
-			if (hit != noone) {
-				var obstruction = find_obstruction_v2(shooter.x, shooter.y, hit.x, hit.y, 1, global.collision_map);
+			var victim = collision_line_first(shooter.x, shooter.y, aimx + (2 * xslope), aimy + (2 * yslope), target, false, true);
+			if (victim != noone) {
+				var obstruction = find_obstruction_v2(shooter.x, shooter.y, victim.x, victim.y, 1, global.collision_map);
 				if (obstruction == undefined) {
-					hit.hp -= 1;
-					hit.foe = shooter;
-					shooter.target_x = hit.x;
-					shooter.target_y = hit.y;
-					part_particles_create(global.particle_system, hit.x + random_range(-10, 10), hit.y + random_range(-10, 10), global.blood_particle, 1);
+					victim.hp -= 1;
+					victim.foe = shooter;
+					shooter.target_x = victim.x;
+					shooter.target_y = victim.y;
+					part_particles_create(global.particle_system, victim.x + random_range(-10, 10), victim.y + random_range(-10, 10), global.blood_particle, 1);
 				}
 				else {
 					shooter.target_x = obstruction[0];
@@ -46,17 +46,51 @@ function weapon_fire(argument0, argument1, argument2, argument3) {
 
 	if (shooter.weapon == Weapons.SNIPER) {
 		if (shooter.cooldown == false) {
-			var hit = collision_line_first(shooter.x, shooter.y, aimx + (10 * xslope), aimy + (10 * yslope), target, false, true);
+			var victim = collision_line_first(shooter.x, shooter.y, aimx + (10 * xslope), aimy + (10 * yslope), target, false, true);
 			shooter.cooldown = true;
 			shooter.alarm[0] = 60;
-			if (hit != noone) {
-				var obstruction = find_obstruction_v2(shooter.x, shooter.y, hit.x, hit.y, 1, global.collision_map);
+			if (victim != noone) {
+				var obstruction = find_obstruction_v2(shooter.x, shooter.y, victim.x, victim.y, 1, global.collision_map);
 				if (obstruction == undefined) {
-					hit.hp -= 50;
-					hit.foe = shooter;
-					shooter.target_x = hit.x;
-					shooter.target_y = hit.y;
-					part_particles_create(global.particle_system, hit.x + random_range(-10, 10), hit.y + random_range(-10, 10), global.blood_particle, 10);
+					victim.hp -= 50;
+					victim.foe = shooter;
+					shooter.target_x = victim.x;
+					shooter.target_y = victim.y;
+					part_particles_create(global.particle_system, victim.x + random_range(-10, 10), victim.y + random_range(-10, 10), global.blood_particle, 10);
+				}
+				else {
+					shooter.target_x = obstruction[0];
+					shooter.target_y = obstruction[1];
+				}
+			}
+			else {
+				// this check can be less precise because it's not in line of a potential hit, just used for visual purposes
+				var obstruction = find_obstruction_v2(shooter.x, shooter.y, aimx + (10 * xslope), aimy + (10 * yslope), 8, global.collision_map);
+				if (obstruction == undefined) {
+					shooter.target_x = aimx + (2 * xslope);
+					shooter.target_y = aimy + (2 * yslope);
+				}
+				else {
+					shooter.target_x = obstruction[0];
+					shooter.target_y = obstruction[1];
+				}
+			}
+		}
+	}
+	
+	if (shooter.weapon == Weapons.PISTOL) {
+		if (shooter.cooldown == false) {
+			var victim = collision_line_first(shooter.x, shooter.y, aimx + (10 * xslope), aimy + (10 * yslope), target, false, true);
+			shooter.cooldown = true;
+			shooter.alarm[0] = 15;
+			if (victim != noone) {
+				var obstruction = find_obstruction_v2(shooter.x, shooter.y, victim.x, victim.y, 1, global.collision_map);
+				if (obstruction == undefined) {
+					victim.hp -= 10;
+					victim.foe = shooter;
+					shooter.target_x = victim.x;
+					shooter.target_y = victim.y;
+					part_particles_create(global.particle_system, victim.x + random_range(-10, 10), victim.y + random_range(-10, 10), global.blood_particle, 10);
 				}
 				else {
 					shooter.target_x = obstruction[0];

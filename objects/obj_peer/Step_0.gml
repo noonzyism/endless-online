@@ -5,7 +5,7 @@ if (shooting) {
 	//right now, we just calc from the player origin to an arbitrarily far away point along the line
 	//we could change this to get the point along the line that intersects with the view boundary
 	
-	weapon_fire(self, par_player, aimx, aimy);
+	weapon_fire(self, par_mob, aimx, aimy);
 }
 
 //for now...

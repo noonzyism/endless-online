@@ -45,3 +45,6 @@ part_type_life(global.blood_particle, 1, 15);
 
 instance_create_depth(x, y, depth, ctrl_draw);
 instance_create_depth(x, y, depth, ctrl_camera);
+instance_create_depth(x, y, depth, ctrl_match_survival);
+
+show_debug_overlay(true);

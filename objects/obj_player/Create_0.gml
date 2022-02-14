@@ -6,7 +6,7 @@ xspeed = 0;
 yspeed = 0;
 
 //the movement speed per step
-velocity = 10;
+velocity = 6;
 
 shooting = false;
 weapon = Weapons.ASSAULT_RIFLE;
