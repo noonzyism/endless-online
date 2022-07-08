@@ -11,3 +11,5 @@ objname = choose("Krombopulator",
 "Zimbo Simulator",
 "Wumbo Sensors",
 "Cryogenerator");
+
+depth = -1000;

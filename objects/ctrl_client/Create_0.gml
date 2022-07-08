@@ -31,6 +31,9 @@ netplay_add_packet_handler(session, Packets.Increment, example_increment_client_
 netplay_add_packet_handler(session, Packets.SYNC, client_sync_handler);
 netplay_add_packet_handler(session, Packets.ACCEPT, client_accept_handler);
 netplay_add_packet_handler(session, Packets.MATCH, client_match_handler);
+netplay_add_packet_handler(session, Packets.SURVIVAL_TASK, client_survival_task_handler);
+netplay_add_packet_handler(session, Packets.SURVIVAL_MOB, client_survival_mob_handler);
+netplay_add_packet_handler(session, Packets.SURVIVAL_KEYS, client_survival_keys_handler);
 
 
 username = get_string("Enter a username: ", "Mr Client");

@@ -1,4 +1,4 @@
-
+#region player state
 
 //send server state to clients
 if ((obj_player.xspeed != sent_xspeed) || (obj_player.yspeed != sent_yspeed)) {
@@ -27,3 +27,5 @@ if (abs(curr_angle - sent_angle) > 15) {
 if (alarm[0] > 0) {
 	broadcast_server_sync(session);
 }
+
+#endregion

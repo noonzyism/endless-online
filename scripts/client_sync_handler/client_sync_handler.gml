@@ -63,7 +63,7 @@ function client_sync_handler() {
 	//server state
 	//some potential consolidation of code is possible here - these logic blocks for both host and peer IDs effectively do the same exact thing (update some peer instance)
 	else if (_id == 0) {
-		show_debug_message("Client received SYNC: host position [" + string(_x) + ", " + string(_y) + "]");
+		//show_debug_message("Client received SYNC: host position [" + string(_x) + ", " + string(_y) + "]");
 	
 		//create an instance of this peer if it hasn't already been done
 		if (ctrl_client.peers[0] == -1) {

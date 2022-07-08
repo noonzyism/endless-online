@@ -1,6 +1,6 @@
 mainframe_health = 100;
 task_rate = 500;
-keygen_rate = 3600;
+keygen_rate = 500;
 mob_rate = 1000;
 tasklife = 1500;
 tasks = ds_list_create();
@@ -21,8 +21,9 @@ alarm[0] = 1; // refresh keys
 alarm[1] = 1; // task spawner
 alarm[2] = 1; // spawn mobs
 
-objective[0] = obj_player;
+// these variables are used by pathfinding mobs (i.e. obj_zombie)
+objective[0] = obj_player; 
 blockade_object = obj_blockade;
 
-global.aigrid = mp_grid_create(0, 0, room_width / 16, room_height /16, 16, 16) //Set up Grid
-mp_grid_add_instances(global.aigrid,obj_block,1) // Add objects to avoid
+global.aigrid = mp_grid_create(0, 0, room_width / 16, room_height /16, 16, 16) // set up grid
+mp_grid_add_instances(global.aigrid,obj_block,1) // add objects to avoid

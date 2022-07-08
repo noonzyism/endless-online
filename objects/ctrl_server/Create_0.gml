@@ -11,7 +11,9 @@ for (var i = 0; i < 9; i++) {
 	clients[i, 2] = -1; //socket
 }
 
-//for now clients[0] is unused - the id of 0 is reserved for the server
+//the id of 0 is reserved for the server, so this index is skipped in most client-related logic
+clients[0, 0] = instance_nearest(0, 0, obj_player);
+clients[0, 1] = obj_player.username;
 
 //refers to last-sent SERVER state (not client)
 sent_xspeed = -1;
@@ -19,6 +21,11 @@ sent_yspeed = -1;
 sent_shooting = false;
 sent_hp = 100;
 sent_angle = 999;
+
+// match-based variables
+mob_ticker = 0;
+syncrate_match = 30;
+alarm[1] = syncrate_match; // match state updater
 
 username = get_string("Enter a username: ", "Mr Host");
 

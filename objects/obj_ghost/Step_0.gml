@@ -12,3 +12,10 @@ if (distance_to_object(target) < 16) {
 if (hp < 0) {
  instance_destroy();	
 }
+
+if (teleport_x != -1 && teleport_y != -1 && point_distance(x, y, teleport_x, teleport_y) > 16) {
+	x = teleport_x;
+	y = teleport_y;
+	teleport_x = -1;
+	teleport_y = -1;
+}
